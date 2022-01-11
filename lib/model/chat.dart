@@ -8,6 +8,6 @@ class Chat {
   const Chat({
     @required this.urlAvatar,
     @required this.username,
-    @required this.message,
+    @required this.message, String writer,
   });
 }

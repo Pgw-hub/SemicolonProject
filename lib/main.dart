@@ -13,14 +13,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: title,
-        theme: ThemeData(primarySwatch: Colors.deepOrange),
+        theme: ThemeData(primarySwatch: Colors.blue),
         home: MainPage(title: title),
       );
 }
 
 class MainPage extends StatefulWidget {
   final String title;
-
   const MainPage({
     @required this.title,
   });
@@ -79,19 +78,25 @@ class _MainPageState extends State<MainPage> {
           horizontal: 16,
           vertical: 16,
         ),
-        leading: CircleAvatar(
-          radius: 28,
-          backgroundImage: NetworkImage(item.urlAvatar),
-        ),
-        title: Column(
+        // leading: CircleAvatar(
+        //   radius: 28,
+        //   backgroundImage: NetworkImage(item.urlAvatar),
+        // ),
+        title : Row(children: [
+          Chip(
+            label: Text(item.username),
+            backgroundColor: Colors.blue,
+          )
+        ],),
+        subtitle: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               item.username,
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: TextStyle(fontWeight: FontWeight.w900),
             ),
             const SizedBox(height: 4),
-            Text(item.message)
+            Text(item.message),
           ],
         ),
         onTap: () {},
