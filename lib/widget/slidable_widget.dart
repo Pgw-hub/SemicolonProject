@@ -21,27 +21,27 @@ class SlidableWidget<T> extends StatelessWidget {
         /// left side
         actions: <Widget>[
           IconSlideAction(
-            caption: 'Archive',
-            color: Colors.blue,
-            icon: Icons.archive,
+            caption: 'Important',
+            color: Colors.orange,
+            icon: Icons.star_border_outlined,
             onTap: () => onDismissed(SlidableAction.archive),
           ),
-          IconSlideAction(
-            caption: 'Share',
-            color: Colors.indigo,
-            icon: Icons.share,
-            onTap: () => onDismissed(SlidableAction.share),
-          ),
+          // IconSlideAction(
+          //   caption: 'Share',
+          //   color: Colors.indigo,
+          //   icon: Icons.share,
+          //   onTap: () => onDismissed(SlidableAction.share),
+          // ),
         ],
 
         /// right side
         secondaryActions: <Widget>[
-          IconSlideAction(
-            caption: 'More',
-            color: Colors.black45,
-            icon: Icons.more_horiz,
-            onTap: () => onDismissed(SlidableAction.more),
-          ),
+          // IconSlideAction(
+          //   caption: 'More',
+          //   color: Colors.black45,
+          //   icon: Icons.more_horiz,
+          //   onTap: () => onDismissed(SlidableAction.more),
+          // ),
           IconSlideAction(
             caption: 'Delete',
             color: Colors.red,

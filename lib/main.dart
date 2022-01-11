@@ -7,7 +7,7 @@ import 'package:slidable_actions_example/widget/slidable_widget.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  final String title = 'Slidable Example';
+  final String title = '공지사항';
 
   @override
   Widget build(BuildContext context) => MaterialApp(
@@ -38,7 +38,9 @@ class _MainPageState extends State<MainPage> {
         ),
         body: ListView.separated(
           itemCount: items.length,
-          separatorBuilder: (context, index) => Divider(),
+          separatorBuilder: (context, index) => Divider(
+            thickness: 5,
+          ),
           itemBuilder: (context, index) {
             final item = items[index];
 
@@ -49,6 +51,29 @@ class _MainPageState extends State<MainPage> {
             );
           },
         ),
+        bottomNavigationBar: BottomAppBar(
+          child : SizedBox(
+             height : 50,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Column(
+                  children: [
+                    Icon(Icons.message),
+                    Text('전체공지'),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Icon(Icons.star_border_outlined),
+                    Text('중요공지'),
+                  ],
+                ),
+                
+              ],        
+            ),
+          )
+        ) 
       );
 
   void dismissSlidableItem(
@@ -59,16 +84,10 @@ class _MainPageState extends State<MainPage> {
 
     switch (action) {
       case SlidableAction.archive:
-        Utils.showSnackBar(context, 'Chat has been archived');
-        break;
-      case SlidableAction.share:
-        Utils.showSnackBar(context, 'Chat has been shared');
-        break;
-      case SlidableAction.more:
-        Utils.showSnackBar(context, 'Selected more');
+        Utils.showSnackBar(context, '중요공지에 저장되었습니다.');
         break;
       case SlidableAction.delete:
-        Utils.showSnackBar(context, 'Chat has been deleted');
+        Utils.showSnackBar(context, '삭제되었습니다.');
         break;
     }
   }
@@ -84,7 +103,7 @@ class _MainPageState extends State<MainPage> {
         // ),
         title : Row(children: [
           Chip(
-            label: Text(item.username),
+            label: Text(item.keyword),
             backgroundColor: Colors.blue,
           )
         ],),
@@ -92,11 +111,21 @@ class _MainPageState extends State<MainPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              item.username,
+              item.keyword,
               style: TextStyle(fontWeight: FontWeight.w900),
             ),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+              if(item.content.length > 30)
+                for(int i=0; i < 30; i++)
+                  Text(item.content[i]),
+              if(item.content.length < 30)
+                Text(item.content),
+              ],
+            ),
             const SizedBox(height: 4),
-            Text(item.message),
+            Text(item.writer),
           ],
         ),
         onTap: () {},
